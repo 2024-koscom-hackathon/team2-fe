@@ -4,7 +4,7 @@ import ApexChart from 'react-apexcharts';
 import { data } from '../../../tempdata/chartdata';
 import * as s from "./styles";
 
-const CurrentChart = () => {
+const PastChart = () => {
 
     return (
         <s.Wrapper>
@@ -26,4 +26,4 @@ const CurrentChart = () => {
     );
 };
 
-export default CurrentChart;
+export default PastChart;
