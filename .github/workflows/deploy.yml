@@ -58,8 +58,8 @@ jobs:
           script: |
             docker login --username=${{ secrets.NCP_ACCESS_KEY }} --password=${{ secrets.NCP_SECRET_KEY }} hackathon-team2.ncr.fin-ntruss.com 
             docker pull ${{ secrets.NCP_CONTAINER_REGISTRY }}/team2-fe-docker
-            docker stop $(docker ps -a -q)
-            docker rm $(docker ps -a -q)
+            docker container stop team2-fe-docker
+            docker container rm team2-fe-docker
             docker run -d --name team2-fe-docker -p 80:3000 ${{ secrets.NCP_CONTAINER_REGISTRY }}/team2-fe-docker
             docker image prune -f
             
