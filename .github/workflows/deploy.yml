@@ -60,6 +60,6 @@ jobs:
             docker pull ${{ secrets.NCP_CONTAINER_REGISTRY }}/team2-fe-docker
             docker stop $(docker ps -a -q)
             docker rm $(docker ps -a -q)
-            docker run -d --name kosinfo-server -p 80:3000 ${{ secrets.NCP_CONTAINER_REGISTRY }}/team2-fe-docker
+            docker run -d --name team2-fe-docker -p 80:3000 ${{ secrets.NCP_CONTAINER_REGISTRY }}/team2-fe-docker
             docker image prune -f
             
