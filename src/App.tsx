@@ -1,9 +1,12 @@
 import './App.css';
-import CurrentChart from './components/charts/current-chart';
-import PastChart from './components/charts/past-chart';
+
 import Header from './components/header';
 import styled from "styled-components";
 import SideBar from './components/sidebar';
+import { Routes, Route } from 'react-router-dom';
+import { MainPage } from './pages/main';
+import { Game } from './pages/game';
+import { MyPage } from './pages/mypage';
 
 
 function App() {
@@ -11,15 +14,15 @@ function App() {
     <Wrapper>
       <Header />
 
-      <SideContainer>
+      <Contents>
         <SideBar />
+        <Routes>
+          <Route path='/' element={<MainPage />} />
+          <Route path='/game' element={<Game />} />
+          <Route path='/mypage' element={<MyPage />} />
+        </Routes>
+      </Contents>
 
-        <ChartContainer>
-          <CurrentChart />
-          <PastChart />
-        </ChartContainer>
-        
-      </SideContainer>
     </Wrapper>
   );
 }
@@ -31,12 +34,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const SideContainer = styled.div`
+const Contents = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-const ChartContainer = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
