@@ -23,7 +23,7 @@ export const ListItem = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 300px;
+  width: 250px;
   justify-content: space-evenly;
   margin-top: 10px;
 `;
@@ -37,7 +37,7 @@ export const ListDate = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 250px;
+  width: 200px;
   height: 26px;
   background: #F9DF81;
   border-radius: 10px;
