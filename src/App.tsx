@@ -4,9 +4,9 @@ import Header from './components/header';
 import styled from "styled-components";
 import SideBar from './components/sidebar';
 import { Routes, Route } from 'react-router-dom';
-import { MainPage } from './pages/main';
-import { Game } from './pages/game';
-import { MyPage } from './pages/mypage';
+import MainPage from './pages/main';
+import Game from './pages/game';
+import MyPage from './pages/mypage';
 
 
 function App() {
