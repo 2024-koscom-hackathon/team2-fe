@@ -3,22 +3,22 @@ import * as s from "./styles";
 
 const Disclosure = () => {
 
-  const [stdSales, setStdSales] = useState<string[]>(["111", "111"]); // 매출
-  const [stdCostSales, setStdCostSales] = useState<string[]>(["222", "222"]); // 매출원가
-  const [stdProfit, setStdProfit] = useState<string[]>(["333", "333"]); // 매출총이익
-  const [stdExpense, setStdExpense] = useState<string[]>(["444", "444"]); // 판매관리비
-  const [stdOperating, setStdOperating] = useState<string[]>(["555", "555"]); // 영업이익
-  const [stdNetIncome, setStdNetIncome] = useState<string[]>(["666", "666"]); // 당기순이익
-  const [stdTotal, setStdTotal] = useState<string[]>(["777", "777"]); // 총포괄손익
+  const [stdSales, setStdSales] = useState<string[]>(["11,000,000", "19,000,000"]); // 매출
+  const [stdCostSales, setStdCostSales] = useState<string[]>(["11,000,000", "11,000,000"]); // 매출원가
+  const [stdProfit, setStdProfit] = useState<string[]>(["31,000,000", "14,000,000"]); // 매출총이익
+  const [stdExpense, setStdExpense] = useState<string[]>(["100,000", "200,000"]); // 판매관리비
+  const [stdOperating, setStdOperating] = useState<string[]>(["11,000,000", "11,000,000"]); // 영업이익
+  const [stdNetIncome, setStdNetIncome] = useState<string[]>(["11,000,000", "11,000,000"]); // 당기순이익
+  const [stdTotal, setStdTotal] = useState<string[]>(["11,000,000", "11,000,000"]); // 총포괄손익
 
 
-  const [comSales, setComSales] = useState<string[]>(["111", "111"]); // 매출
-  const [comCostSales, setComCostSales] = useState<string[]>(["222", "222"]); // 매출원가
-  const [comProfit, setComProfit] = useState<string[]>(["333", "333"]); // 매출총이익
-  const [comExpense, setComExpense] = useState<string[]>(["444", "444"]); // 판매관리비
-  const [comOperating, setComOperating] = useState<string[]>(["555", "555"]); // 영업이익
-  const [comNetIncome, setComNetIncome] = useState<string[]>(["666", "666"]); // 당기순이익
-  const [comTotal, setComTotal] = useState<string[]>(["777", "777"]); // 총포괄손익
+  const [comSales, setComSales] = useState<string[]>(["11,000,000", "19,000,000"]); // 매출
+  const [comCostSales, setComCostSales] = useState<string[]>(["11,000,000", "11,000,000"]); // 매출원가
+  const [comProfit, setComProfit] = useState<string[]>(["31,000,000", "14,000,000"]); // 매출총이익
+  const [comExpense, setComExpense] = useState<string[]>(["100,000", "200,000"]); // 판매관리비
+  const [comOperating, setComOperating] = useState<string[]>(["11,000,000", "11,000,000"]); // 영업이익
+  const [comNetIncome, setComNetIncome] = useState<string[]>(["11,000,000", "11,000,000"]); // 당기순이익
+  const [comTotal, setComTotal] = useState<string[]>(["11,000,000", "11,000,000"]); // 총포괄손익
 
   return (
     <s.Wrapper>
