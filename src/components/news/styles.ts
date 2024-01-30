@@ -111,3 +111,10 @@ export const GoodIcon = styled.img`
 export const BadIcon = styled.img`
 
 `;
+
+export const NoInformation = styled.div`
+  display: flex;
+  margin-top: 250px;
+  margin-left: 300px;
+  font-size: 20px;
+`;

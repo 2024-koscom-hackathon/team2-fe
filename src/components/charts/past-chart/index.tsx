@@ -4,16 +4,12 @@ import ApexChart from 'react-apexcharts';
 import { data } from '../../../tempdata/chartdata';
 import * as s from "./styles";
 import { useRecoilValue } from 'recoil';
-import { stockInfo, stockValue } from '../../../store/stocks';
+import { stockInfo, stdStockValue, comStockValue } from '../../../store/stocks';
 
 const PastChart = () => {
 
-  const curValues = useRecoilValue(stockValue);
+  const curValues = useRecoilValue(comStockValue);
   const curStockInfo = useRecoilValue(stockInfo);
-  const [startX, setStartX] = useState(curValues[0].x);
-  const [endX, setEndX] = useState(curValues[curValues.length - 1].x);
-
-  const transformedValues = curValues.slice(-365);
 
   return (
     <s.Wrapper>
@@ -22,7 +18,7 @@ const PastChart = () => {
         type="candlestick"
         series={[
           {
-            data: transformedValues
+            data: curValues
           }
         ]}
         
