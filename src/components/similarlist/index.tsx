@@ -1,30 +1,53 @@
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import * as s from "./styles";
+import { stdSimilarPatternList } from "../../store/standard";
+import { comDisplosureCurrent, comDisplosurePast, comDuration, comMacroInfo, comNewsList } from "../../store/compare";
+import CompareAPI from "../../api/CompareAPI";
+import { stockInfo } from "../../store/stocks";
 
 const SimilarList = () => {
+  const stdSimilar = useRecoilValue(stdSimilarPatternList);
+
+  /* 비교 기간 */
+  const setComDuration = useSetRecoilState(comDuration); // 기간
+  const setComDisplosureCurrent = useSetRecoilState(comDisplosureCurrent); // 공시 - 당기
+  const setComDisplosurePast = useSetRecoilState(comDisplosurePast); // 공시 - 전기
+  const setComMacroInfo = useSetRecoilState(comMacroInfo); // 거시경제지표
+  const setComNewsList = useSetRecoilState(comNewsList); // 뉴스기사
+
+  const scode = useRecoilValue(stockInfo).scode;
+
+  const onClickDuration = async (sd: string, ed: string) => {
+    await CompareAPI.getCompareInfo(scode, sd, ed)
+      .then((res) => {
+        console.log({res});
+
+        setComDuration({startDate: sd, endDate: ed});
+        setComDisplosureCurrent(res.financialInfoResCurrent);
+        setComDisplosurePast(res.financialInfoResPast);
+        setComMacroInfo(res.macroInfoRes);
+        setComNewsList(res.newsRes);
+      })
+      .catch((err) => {
+        console.error({err});
+        return null;
+      });
+  }
+
   return (
     <s.Wrapper>
       <s.Title>유사 패턴 리스트</s.Title>
       <s.ListWrapper>
-        <s.ListItem>
-          <s.ListIndex>1.</s.ListIndex>
-          <s.ListDate>2023.02.12 - 2023.03.12</s.ListDate>
-        </s.ListItem>
-        <s.ListItem>
-          <s.ListIndex>2.</s.ListIndex>
-          <s.ListDate>2013.07.04 - 2013.08.04</s.ListDate>
-        </s.ListItem>
-        <s.ListItem>
-          <s.ListIndex>3.</s.ListIndex>
-          <s.ListDate>2017.10.29 - 2017.11.29</s.ListDate>
-        </s.ListItem>
-        <s.ListItem>
-          <s.ListIndex>4.</s.ListIndex>
-          <s.ListDate>2023.02.12 - 2023.03.12</s.ListDate>
-        </s.ListItem>
-        <s.ListItem>
-          <s.ListIndex>5.</s.ListIndex>
-          <s.ListDate>2013.07.04 - 2013.08.04</s.ListDate>
-        </s.ListItem>
+        {
+          stdSimilar.map((item, index) => {
+            return (
+              <s.ListItem onClick={() => onClickDuration(item.cfStartDate, item.cfEndDate)}>
+                <s.ListIndex>{index+1}.</s.ListIndex>
+                <s.ListDate>{item.cfStartDate} ~ {item.cfEndDate}</s.ListDate>
+              </s.ListItem>
+            )
+          })
+        }
       </s.ListWrapper>
     </s.Wrapper>
   )

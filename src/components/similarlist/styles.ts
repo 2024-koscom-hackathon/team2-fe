@@ -26,6 +26,8 @@ export const ListItem = styled.div`
   width: 250px;
   justify-content: space-evenly;
   margin-top: 10px;
+  cursor: pointer;
+
 `;
 
 export const ListIndex = styled.div`
@@ -41,4 +43,7 @@ export const ListDate = styled.div`
   height: 26px;
   background: #F9DF81;
   border-radius: 10px;
+  &:hover {
+    background-color: #0D9FDE;
+  };
 `;

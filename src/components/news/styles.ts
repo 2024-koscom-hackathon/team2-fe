@@ -63,6 +63,11 @@ export const ReportGrid = styled.div`
   margin-top: 20px;
 `;
 
+export const ReportLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const ReportVerticalLine = styled.div`
   display: flex;
   width: 1px;
@@ -80,6 +85,23 @@ export const ReportSummary = styled.div`
   width: 620px;
   height: 200px;
   overflow: auto;
+`;
+
+export const SummaryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  width: 520px;
+  overflow: auto;
+  word-break: keep-all;
+`;
+
+export const SummaryLink = styled.div`
+  display: flex;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 400px;
+  color: #C5C0C0;
 `;
 
 export const GoodIcon = styled.img`
