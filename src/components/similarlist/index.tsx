@@ -3,7 +3,9 @@ import * as s from "./styles";
 import { stdSimilarPatternList } from "../../store/standard";
 import { comDisplosureCurrent, comDisplosurePast, comDuration, comMacroInfo, comNewsList } from "../../store/compare";
 import CompareAPI from "../../api/CompareAPI";
-import { stockInfo } from "../../store/stocks";
+import { comStockValue, stockInfo } from "../../store/stocks";
+import StockInfoAPI from "../../api/StockInfoAPI";
+import { IStockVal } from "../header";
 
 const SimilarList = () => {
   const stdSimilar = useRecoilValue(stdSimilarPatternList);
@@ -16,6 +18,7 @@ const SimilarList = () => {
   const setComNewsList = useSetRecoilState(comNewsList); // 뉴스기사
 
   const scode = useRecoilValue(stockInfo).scode;
+  const setStockValue = useSetRecoilState(comStockValue); // 기준차트 시세정보 setter
 
   const onClickDuration = async (sd: string, ed: string) => {
     await CompareAPI.getCompareInfo(scode, sd, ed)
@@ -25,13 +28,28 @@ const SimilarList = () => {
         setComDuration({startDate: sd, endDate: ed});
         setComDisplosureCurrent(res.financialInfoResCurrent);
         setComDisplosurePast(res.financialInfoResPast);
-        setComMacroInfo(res.macroInfoRes);
+        setComMacroInfo(res.macroInfoRes[0]);
         setComNewsList(res.newsRes);
       })
       .catch((err) => {
         console.error({err});
         return null;
       });
+    
+    await StockInfoAPI.getStockDurationInfo(scode, sd, ed)
+      .then((res) => {
+        console.log({res});
+        const transformedData = res.map((stockVal: IStockVal) => ({
+          x: new Date(stockVal.date).getTime(),
+          y: [stockVal.openingPrice, stockVal.minPrice, stockVal.maxPrice, stockVal.closingPrice]
+        }));
+        console.log({transformedData});
+        setStockValue(transformedData);
+      })
+      .catch((err) => {
+        console.error({err});
+        return null;
+      }); // 기준기간 시세정보 setter
   }
 
   return (

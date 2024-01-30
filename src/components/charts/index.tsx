@@ -3,9 +3,11 @@ import CurrentChart from "./current-chart";
 import PastChart from "./past-chart";
 import * as s from "./styles";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { stockInfo } from "../../store/stocks";
+import { stockInfo, stdStockValue } from "../../store/stocks";
 import StandardAPI from "../../api/StandardAPI";
 import { stdDisplosureCurrent, stdDisplosurePast, stdDuration, stdMacroInfo, stdNewsList, stdSimilarPatternList } from "../../store/standard";
+import StockInfoAPI from "../../api/StockInfoAPI";
+import { IStockVal } from "../header";
 
 const Charts = () => {
   const [startDate, setStartDate] = useState("");
@@ -30,9 +32,10 @@ const Charts = () => {
   const setStdNewsList = useSetRecoilState(stdNewsList); // 뉴스기사
   const setStdSimilarPatternList = useSetRecoilState(stdSimilarPatternList); // 유사패턴리스트
 
-
+  const setStockValue = useSetRecoilState(stdStockValue); // 기준차트 시세정보 setter
 
   const onClickSubmitBtn = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log({scode});
     await StandardAPI.getStandardInfo(scode, startDate, endDate)
       .then((res) => {
         console.log({res});
@@ -41,7 +44,7 @@ const Charts = () => {
         setStdDuration({startDate: startDate, endDate: endDate});
         setStdDisplosureCurrent(res.financialInfoResCurrent);
         setStdDisplosurePast(res.financialInfoResPast);
-        setStdMacroInfo(res.macroInfoRes);
+        setStdMacroInfo(res.macroInfoRes[0]);
         setStdNewsList(res.newsRes);
         setStdSimilarPatternList(res.patternListRes);
 
@@ -49,7 +52,23 @@ const Charts = () => {
       .catch((err) => {
         console.error({err});
         return null;
+      }); // 기준기간 정보 setter
+    
+    await StockInfoAPI.getStockDurationInfo(scode, startDate, endDate)
+      .then((res) => {
+        console.log({res});
+        const transformedData = res.map((stockVal: IStockVal) => ({
+          x: new Date(stockVal.date).getTime(),
+          y: [stockVal.openingPrice, stockVal.minPrice, stockVal.maxPrice, stockVal.closingPrice]
+        }));
+        console.log({transformedData});
+        setStockValue(transformedData);
       })
+      .catch((err) => {
+        console.error({err});
+        return null;
+      }); // 기준기간 시세정보 setter
+
   }
 
   return (
