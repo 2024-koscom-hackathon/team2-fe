@@ -10,7 +10,7 @@ const Report = () => {
         <s.Link>{"https://naver.com"}</s.Link>
       </s.Header>
 
-      <s.Title>제목제목제목제목제목제목제목제목</s.Title>
+      <s.Title>삼성전자 `10년 주가` 교훈…바닥론 솔솔</s.Title>
     </s.Wrapper>
   )
 }
