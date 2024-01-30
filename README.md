@@ -1,46 +1,11 @@
-# Getting Started with Create React App
+# Kos-Sign
+> 2024 코스콤 신입사원 해커톤 2조 FE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Branch 전략
+### dev branch (default)
+개발 브랜치. feature별로 세부 브랜치 나누어 개발 진행 후 develop 브랜치에 merge
+### main branch
+서버 배포가 진행되는 브랜치. 개발 완료 후 main에 merge 되면 자동 배포(Docker + NCP + Github Actions)
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## System Architecture
+<img width="931" alt="Architecture" src="https://github.com/2024-koscom-hackathon/team2-fe/assets/77184523/99b3250e-3460-421d-9278-50742c47e426">
