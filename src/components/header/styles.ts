@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     align-items: center;
     width: 100%;
     height: 60px;
-    background: linear-gradient(180deg, rgba(46, 180, 255, 0.70) 0%, rgba(78, 191, 255, 0.69) 43%, rgba(0, 163, 255, 0.67) 100%);
+    background: linear-gradient(90deg, #0058FF 13.12%, #01E5E3 104.62%);
 `;
 
 export const Icon = styled.div`

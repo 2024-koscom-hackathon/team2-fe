@@ -1,24 +1,18 @@
 import { useState } from "react";
 import * as s from "./styles";
+import { useRecoilValue } from "recoil";
+import { stdDisplosureCurrent, stdDisplosurePast } from "../../store/standard";
+import { comDisplosureCurrent, comDisplosurePast } from "../../store/compare";
 
 const Disclosure = () => {
 
-  const [stdSales, setStdSales] = useState<string[]>(["11,000,000", "19,000,000"]); // 매출
-  const [stdCostSales, setStdCostSales] = useState<string[]>(["11,000,000", "11,000,000"]); // 매출원가
-  const [stdProfit, setStdProfit] = useState<string[]>(["31,000,000", "14,000,000"]); // 매출총이익
-  const [stdExpense, setStdExpense] = useState<string[]>(["100,000", "200,000"]); // 판매관리비
-  const [stdOperating, setStdOperating] = useState<string[]>(["11,000,000", "11,000,000"]); // 영업이익
-  const [stdNetIncome, setStdNetIncome] = useState<string[]>(["11,000,000", "11,000,000"]); // 당기순이익
-  const [stdTotal, setStdTotal] = useState<string[]>(["11,000,000", "11,000,000"]); // 총포괄손익
-
-
-  const [comSales, setComSales] = useState<string[]>(["11,000,000", "19,000,000"]); // 매출
-  const [comCostSales, setComCostSales] = useState<string[]>(["11,000,000", "11,000,000"]); // 매출원가
-  const [comProfit, setComProfit] = useState<string[]>(["31,000,000", "14,000,000"]); // 매출총이익
-  const [comExpense, setComExpense] = useState<string[]>(["100,000", "200,000"]); // 판매관리비
-  const [comOperating, setComOperating] = useState<string[]>(["11,000,000", "11,000,000"]); // 영업이익
-  const [comNetIncome, setComNetIncome] = useState<string[]>(["11,000,000", "11,000,000"]); // 당기순이익
-  const [comTotal, setComTotal] = useState<string[]>(["11,000,000", "11,000,000"]); // 총포괄손익
+  /* 기준 */
+  const stdDispCur = useRecoilValue(stdDisplosureCurrent); // 당기
+  const stdDispPast = useRecoilValue(stdDisplosurePast); // 전기
+  
+  /* 비교 */
+  const comDispCur = useRecoilValue(comDisplosureCurrent); // 당기
+  const comDispPast = useRecoilValue(comDisplosurePast); // 전기
 
   return (
     <s.Wrapper>
@@ -39,31 +33,38 @@ const Disclosure = () => {
             <tbody>
               <tr>
                 <s.DisclosureValueTd>매출</s.DisclosureValueTd>
-                {stdSales.map((el, i) => <s.DisclosureValueTd>{stdSales[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{stdDispCur.sales}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{stdDispPast.sales}</s.DisclosureValueTd>
               </tr>
               <tr>
                 <s.DisclosureValueTd>매출원가</s.DisclosureValueTd>
-                {stdCostSales.map((el, i) => <s.DisclosureValueTd>{stdCostSales[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{stdDispCur.cogs}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{stdDispPast.cogs}</s.DisclosureValueTd>
               </tr>
               <tr>
                 <s.DisclosureValueTd>매출총이익</s.DisclosureValueTd>
-                {stdProfit.map((el, i) => <s.DisclosureValueTd>{stdProfit[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{stdDispCur.gross_profit}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{stdDispPast.gross_profit}</s.DisclosureValueTd>
               </tr>
               <tr>
                 <s.DisclosureValueTd>판매관리비</s.DisclosureValueTd>
-                {stdExpense.map((el, i) => <s.DisclosureValueTd>{stdExpense[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{stdDispCur.sga_expense}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{stdDispPast.sga_expense}</s.DisclosureValueTd>
               </tr>
               <tr>
                 <s.DisclosureValueTd>영업이익</s.DisclosureValueTd>
-                {stdOperating.map((el, i) => <s.DisclosureValueTd>{stdOperating[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{stdDispCur.op_profit}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{stdDispPast.op_profit}</s.DisclosureValueTd>
               </tr>
               <tr>
                 <s.DisclosureValueTd>당기순이익</s.DisclosureValueTd>
-                {stdNetIncome.map((el, i) => <s.DisclosureValueTd>{stdNetIncome[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{stdDispCur.net_income}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{stdDispPast.net_income}</s.DisclosureValueTd>
               </tr>
               <tr>
                 <s.DisclosureValueTd>총포괄손익</s.DisclosureValueTd>
-                {stdTotal.map((el, i) => <s.DisclosureValueTd>{stdTotal[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{stdDispCur.tci}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{stdDispPast.tci}</s.DisclosureValueTd>
               </tr>
             </tbody>
 
@@ -83,34 +84,42 @@ const Disclosure = () => {
               </tr>
             </thead>
 
+
             <tbody>
               <tr>
                 <s.DisclosureValueTd>매출</s.DisclosureValueTd>
-                {comSales.map((el, i) => <s.DisclosureValueTd>{comSales[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{comDispCur.sales}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{comDispPast.sales}</s.DisclosureValueTd>
               </tr>
               <tr>
                 <s.DisclosureValueTd>매출원가</s.DisclosureValueTd>
-                {comCostSales.map((el, i) => <s.DisclosureValueTd>{comCostSales[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{comDispCur.cogs}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{comDispPast.cogs}</s.DisclosureValueTd>
               </tr>
               <tr>
                 <s.DisclosureValueTd>매출총이익</s.DisclosureValueTd>
-                {comProfit.map((el, i) => <s.DisclosureValueTd>{comProfit[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{comDispCur.gross_profit}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{comDispPast.gross_profit}</s.DisclosureValueTd>
               </tr>
               <tr>
                 <s.DisclosureValueTd>판매관리비</s.DisclosureValueTd>
-                {comExpense.map((el, i) => <s.DisclosureValueTd>{comExpense[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{comDispCur.sga_expense}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{comDispPast.sga_expense}</s.DisclosureValueTd>
               </tr>
               <tr>
                 <s.DisclosureValueTd>영업이익</s.DisclosureValueTd>
-                {comOperating.map((el, i) => <s.DisclosureValueTd>{comOperating[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{comDispCur.op_profit}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{comDispPast.op_profit}</s.DisclosureValueTd>
               </tr>
               <tr>
                 <s.DisclosureValueTd>당기순이익</s.DisclosureValueTd>
-                {comNetIncome.map((el, i) => <s.DisclosureValueTd>{comNetIncome[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{comDispCur.net_income}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{comDispPast.net_income}</s.DisclosureValueTd>
               </tr>
               <tr>
                 <s.DisclosureValueTd>총포괄손익</s.DisclosureValueTd>
-                {comTotal.map((el, i) => <s.DisclosureValueTd>{comTotal[i]}</s.DisclosureValueTd>)}
+                <s.DisclosureValueTd>{comDispCur.tci}</s.DisclosureValueTd>
+                <s.DisclosureValueTd>{comDispPast.tci}</s.DisclosureValueTd>
               </tr>
             </tbody>
 
