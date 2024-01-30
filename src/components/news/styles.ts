@@ -79,6 +79,7 @@ export const ReportSummary = styled.div`
   border-radius: 10px;
   width: 620px;
   height: 200px;
+  overflow: auto;
 `;
 
 export const GoodIcon = styled.img`
