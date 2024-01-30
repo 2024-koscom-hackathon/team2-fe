@@ -56,3 +56,18 @@ export const InputEnd = styled.input`
   display: flex;
   width: 100px;
 `;
+
+export const SubmitBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: linear-gradient(90deg, #0058FF 13.12%, #01E5E3 104.62%); */
+  background: linear-gradient(90deg, #0058FF 13.12%, #1B5150 104.62%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+`;

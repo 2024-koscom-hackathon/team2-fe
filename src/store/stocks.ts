@@ -31,4 +31,4 @@ export const stockValue = atom({
     x: 0,
     y: [0, 0, 0, 0]
   }]
-})
+});
