@@ -3,7 +3,7 @@ import * as s from "./styles";
 
 const SideBar = () => {
   return (
-    <s.Wrapper>SideBar</s.Wrapper>
+    <s.Wrapper></s.Wrapper>
   )
 }
 
