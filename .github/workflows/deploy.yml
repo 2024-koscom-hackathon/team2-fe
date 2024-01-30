@@ -26,6 +26,11 @@ jobs:
           registry: ${{ secrets.NCP_CONTAINER_REGISTRY }}
           username: ${{ secrets.NCP_ACCESS_KEY }}
           password: ${{ secrets.NCP_SECRET_KEY }}
+      - name: env 파일 생성
+        run: |
+          echo "REACT_APP_SERVER_BASE_URL=$REACT_APP_SERVER_BASE_URL" >> .env
+        env:
+          REACT_APP_SERVER_BASE_URL: ${{ secrets.REACT_APP_SERVER_BASE_URL }}
       - name: build and push
         # Dockerfile에 작성된 내용으로 이미지 빌드, registry에 push
         uses: docker/build-push-action@v3
