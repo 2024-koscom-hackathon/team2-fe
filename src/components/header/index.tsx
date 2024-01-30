@@ -1,10 +1,10 @@
 import { useState } from "react";
 import * as s from "./styles";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { stockInfo, stockList, stockValue } from "../../store/stocks";
+import { stockInfo, stockList, stdStockValue } from "../../store/stocks";
 import StockInfoAPI from "../../api/StockInfoAPI";
 
-interface IStockVal {
+export interface IStockVal {
   date: string;
   openingPrice: number;
   minPrice: number;
@@ -17,7 +17,7 @@ const Header = () => {
   const [s_Info, setS_Info] = useState("");
   const setStockInfo = useSetRecoilState(stockInfo);
   const stockInfoList = useRecoilValue(stockList);
-  const setStockValue = useSetRecoilState(stockValue);
+  const setStockValue = useSetRecoilState(stdStockValue);
 
   const handleOnKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if(e.key === "Enter") submitSName();
