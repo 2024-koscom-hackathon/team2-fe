@@ -1,15 +1,23 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as s from "./styles";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { stockInfo, stockList } from "../../store/stocks";
-import SearchAPI from "../../api/SearchAPI";
+import { stockInfo, stockList, stockValue } from "../../store/stocks";
 import StockInfoAPI from "../../api/StockInfoAPI";
+
+interface IStockVal {
+  date: string;
+  openingPrice: number;
+  minPrice: number;
+  maxPrice: number;
+  closingPrice: number;
+}
 
 const Header = () => {
 
   const [s_Info, setS_Info] = useState("");
   const setStockInfo = useSetRecoilState(stockInfo);
   const stockInfoList = useRecoilValue(stockList);
+  const setStockValue = useSetRecoilState(stockValue);
 
   const handleOnKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if(e.key === "Enter") submitSName();
@@ -24,10 +32,19 @@ const Header = () => {
         return true;
       }
     });
-    
+
     StockInfoAPI.getStockInfo(code)
       .then((res) => {
         console.log({res});
+        // 차트 삽입 포맷으로 변환
+        const transformedData = res.map((stockVal: IStockVal) => ({
+          x: new Date(stockVal.date).getTime(),
+          y: [stockVal.openingPrice, stockVal.minPrice, stockVal.maxPrice, stockVal.closingPrice]
+        }));
+          
+        console.log(transformedData);
+        // atom 삽입
+        setStockValue(transformedData);
       })
       .catch((err) => {
         console.error({err});
@@ -39,8 +56,6 @@ const Header = () => {
     console.log(e.target.value);
     setS_Info(e.target.value);
   }
-
-
 
   return (
     <s.Wrapper>
