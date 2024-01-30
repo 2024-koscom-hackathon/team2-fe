@@ -1,4 +1,5 @@
 import { atom, selector } from "recoil";
+import { data } from "../tempdata/chartdata";
 
 export const stockInfo = atom({
   key: "stockInfo",
@@ -24,7 +25,10 @@ export const stockList = atom({
   ]
 });
 
-// export const stockValue = atom({
-//   key: "stockValue",
-//   default: 
-// })
+export const stockValue = atom({
+  key: "stockValue",
+  default: [{
+    x: 0,
+    y: [0, 0, 0, 0]
+  }]
+})

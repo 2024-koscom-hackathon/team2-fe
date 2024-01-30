@@ -5,21 +5,12 @@ import SimilarList from "../../components/similarlist";
 import MacroInfo from "../../components/macroinfo";
 import News from "../../components/news";
 import Disclosure from "../../components/disclosure";
+import Charts from "../../components/charts";
 
 const MainPage = () => {
   return (
     <s.Wrapper>
-      <s.ChartWrapper>
-          <s.ChartContainer>
-            <s.Title>기준 차트</s.Title>
-            <CurrentChart />
-          </s.ChartContainer>
-
-          <s.ChartContainer>
-            <s.Title>비교 차트</s.Title>
-            <PastChart />
-          </s.ChartContainer>
-      </s.ChartWrapper>
+      <Charts />
 
       <s.InfoWrapper>
         <s.RightTopWrapper>
